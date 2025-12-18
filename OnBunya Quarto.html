@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.43">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Sebastian Lopez Marcano">
+<meta name="author" content="Dung Nguyen Tien">
+
+<title>Suggestions for using OnBunya for Data Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="OnBunya Quarto_files/libs/clipboard/clipboard.min.js"></script>
+<script src="OnBunya Quarto_files/libs/quarto-html/quarto.js"></script>
+<script src="OnBunya Quarto_files/libs/quarto-html/popper.min.js"></script>
+<script src="OnBunya Quarto_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="OnBunya Quarto_files/libs/quarto-html/anchor.min.js"></script>
+<link href="OnBunya Quarto_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="OnBunya Quarto_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="OnBunya Quarto_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="OnBunya Quarto_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="OnBunya Quarto_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Suggestions for using OnBunya for Data Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Sebastian Lopez Marcano </p>
+             <p>Dung Nguyen Tien </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>UQ provides several virtual desktop services to researchers through the <a href="https://onbunya.rcc.uq.edu.au/">OnBunya</a> website. An overview of these services can be found in the HPC OnDemand Guide. The diagram below shows the current options available through the service.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Interactive%20Apps.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Our Primary focus in this document is help configure your environment so that you can start coding in languages such as R, Python or Julia in either an Integrated Development Environment or via Jupyter Notebooks and highlight some common issues which you may encounter on Bunya.</p>
+<p>We will concentrate on the Desktop and Jupyter Application provided. The current VS Code option is an implementation of Code Server, a web-based IDE based on the Open-Source elements of Visual Studio code, which has the look and feel of Visual Studio Code but lacks many of the extensions available through Microsoft’s extension marketplace. For this reason, we suggest you consider installing your own version of VS Code in a Desktop until the Application supports such extensions. There is no interactive option for RStudio, unlike on similar services such as NCI ARE, so we will configure this through the Desktop interface as well.</p>
+<section id="integrated-development-environments" class="level2">
+<h2 class="anchored" data-anchor-id="integrated-development-environments">Integrated Development Environments</h2>
+<p>We will consider two options, the RStudio Desktop and VS Code. We will demonstrate how to start the applications but will not go into details on how to configure the IDEs themselves.&nbsp;The following articles may provide additional information on using the IDEs with your chosen language.</p>
+<section id="vs-code" class="level3">
+<h3 class="anchored" data-anchor-id="vs-code">VS Code</h3>
+<p><a href="https://code.visualstudio.com/docs/python/python-tutorial">Getting Started with Python in VS Code</a></p>
+<p><a href="https://tms-outsource.com/blog/posts/how-to-use-r-in-vscode/">How to Use R in VSCode for Data Science</a></p>
+<p><a href="https://www.julia-vscode.org/docs/stable/">Julia in VS Code</a></p>
+</section>
+<section id="rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="rstudio">RStudio</h3>
+<p><a href="https://moldstud.com/articles/p-getting-started-with-rstudio-comprehensive-beginners-guide-for-data-scientists">Beginner Guide to Using RStudio for Data Science</a></p>
+<p><a href="https://swcarpentry.github.io/r-novice-gapminder/">R for Reproducible Scientific Analysis: Summary and Setup</a></p>
+</section>
+<section id="rstudio-desktop" class="level3">
+<h3 class="anchored" data-anchor-id="rstudio-desktop">RStudio Desktop</h3>
+<p>Since the beginning of 2025, it is no longer possible to download a pre-compiled version of RStudio desktop for the version of the Operating System currently installed on Bunya, so if we want to use the RStudio Desktop, we must choose between downloading the December 2024 version of RStudio Desktop and configuring it with our own version of R or using an Apptainer container with a more recent release. The Research Computing Centre maintains several containers in the directory /sw/containers/local/rcc/. They are available under <strong>General Apps</strong> in the <strong>Bunya Apps</strong> directory.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Bunya%20Apps.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Alternatively, you can access these containers via the module system.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Containers.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>You will notice that some versions of RStudio have many additional packages installed by default. These have the potential to save you space in your home directory, which is often at a premium for many users. Very occasionally, you may have issues with installing R packages which have been written in other languages such as C or Fortran, because the containers lack some common development libraries. In such situations, you should look at installing RStudio yourself; we give an example of how to do this later in the document.</p>
+</section>
+<section id="visual-studio-code" class="level3">
+<h3 class="anchored" data-anchor-id="visual-studio-code">Visual Studio Code</h3>
+<p>As mentioned earlier, we favour installing our own personal version of VS Code. We can use the Firefox browser from a standard desktop from onBunya to download the tar.gz file for x64 from the <a href="https://code.visualstudio.com/download#">download link</a>, then open a terminal and untar the data into a directory of our choice, for example</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/VS%20Code.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Next, we try starting up with the command</p>
+<p><code>~/apps/VSCode-linux-x64/bin/code</code></p>
+<p>If that is successful, we can go ahead and delete the tar.gz file that we downloaded and create a desktop entry for Virtual Studio Code by creating a file called <code>~/.local/share/applications/vscode.desktop</code> containing</p>
+<p><code>[Desktop Entry]</code></p>
+<p><code>Name=Visual Studio Code</code></p>
+<p><code>Exec=/home/YOUR USERNAME/apps/VSCode-linux-x64/bin/code</code></p>
+<p><code>Type=Application</code></p>
+<p><code>Icon=input-keyboard</code></p>
+<p><code>Categories=Development;</code></p>
+<p>Here you should see an item appearing under the Programming menu called <strong>Visual Studio Code</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/VS%20Code%20Item.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="jupyter-notebooks" class="level3">
+<h3 class="anchored" data-anchor-id="jupyter-notebooks">Jupyter Notebooks</h3>
+<p>You can start a Jupyter notebook by clicking on the link in the Bunya Apps -&gt; General Apps Menu. This will automatically start up the Firefox web browser pointing to the URL used by your Jupyter notebook session.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Jupyter%20Notebook.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>This is the recommended way to work with Jupyter Notebooks from within a Desktop session. However, it does differ from the interface you see if you use the Jupyter Interactive session which uses Jupyter Labs. Jupyter Labs is available through the module system, and we can create our own menu entry for Jupyter Labs if we prefer to have consistent experience in both the desktop and the interactive application. One approach is to create a wrapper script which loads the module and then starts jupyter-lab. For example, create a directory called <code>~/apps/wrappers</code> and add a script called <code>jupyterlab_wrapper.sh</code> containing</p>
+<p><code>#!/bin/bash</code></p>
+<p><code>module load jupyterlab</code></p>
+<p><code>exec jupyter-lab</code></p>
+<p>then make the script executable with the command</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Jupyter%20terminal.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>now we can create a menu item with a script called <code>~/.local/share/applications/jupyterlab.desktop</code> containing</p>
+<p><code>[Desktop Entry]</code></p>
+<p><code>Name=JupyterLab</code></p>
+<p><code>Exec= mate-terminal --window --title "Jupyter Lab" -e '/bin/bash -c "/home/YOUR USERNAME/apps/wrappers/jupyterlab_wrapper.sh "'</code></p>
+<p><code>Type=Application</code></p>
+<p><code>Icon=/sw/local/share/icons/jupyter.ico</code></p>
+<p><code>Categories=Development;</code></p>
+<p>Notice that we are starting Jupyter Lab inside a mate-terminal. This is not entirely necessary for the operation of Jupyter, but allows us to see error messages generated, which is useful for debugging issues with the custom kernels we will be creating.</p>
+<p>The current jupyterlab module was built using EasyBuild, and as a result contains several additions to the LIBRARY PATH which can conflict with some of the example development environments which we will be creating.&nbsp;However, if you are intending to use the default Python environment provided with Jupyterlab and add packages packages with the<code>pip install –user</code> command, then this is the option we recommend for you.</p>
+<p>An alternative is to create our own Conda environment for Jupyterlab. Here again, we could use a wrapper script to load the Conda environment, although this approach may have similar drawbacks to the module-based approach with libraries from the Conda environment taking precedence in your library path. We can use a workaround for the path issue by calling the jupyter-lab program without loading the full Conda environment. &nbsp;However, there are trade-offs with this approach, while the Python environment is consistent, we are not loading full environment and so we may not have access to other programs and libraries from the environment. This can lead to issues installing additional packages to the default python environment (although you can work around this issue by loading the Conda before installing new packages). We recommend this approach if you intend to use your own Python, R or Julia kernels as we will demonstrate in our case studies.</p>
+<p>There are several modules available for managing Conda environments, the default being anaconda, but we recommend using Miniforge. We start by loading the most recent Miniforge module</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Jupyter%20terminal%202.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>At the time of writing, the mamba command does not appear to include a suitable environment directory in its path. We can check this with the command <code>mamba config list envs_dir</code>. Make sure that it contains a directory you can write to such as <code>~/.conda/envs</code> and consider doing something similar for <code>pkgs_dirs</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Jupyter%20terminal%203.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Create an environment yaml file to build our environment for example we could create a file called <code>jupyterlab_environment.yml</code> containing</p>
+<p><code>name: jupyterlab</code></p>
+<p><code>channels:</code></p>
+<p><code>- conda-forge</code></p>
+<p><code>- bioconda</code></p>
+<p><code>dependencies:</code></p>
+<p><code>- jupyterlab</code></p>
+<p><code>- ipykernel</code></p>
+<p><code>- scipy</code></p>
+<p><code>- scikit-learn</code></p>
+<p><code>- pandas</code></p>
+<p><code>- dask</code></p>
+<p><code>- vaex</code></p>
+<p><code>- matplotlib</code></p>
+<p><code>- seaborn</code></p>
+<p><code>- plotly</code></p>
+<p><code>- altair</code></p>
+<p>Then we can build the environment with the command</p>
+<p><code>mamba env create -n jupyterlab -f jupyterlab_environment.yml</code></p>
+<p>Then we create our <code>~/.local/share/applications/jupyterlab.desktop</code> file</p>
+<p><code>[Desktop Entry]</code></p>
+<p><code>Name=JupyterLab</code></p>
+<p><code>Exec= mate-terminal --window --title "Jupyter Lab" -e '/home/YOUR USERNAME/.conda/envs/jupyterlab/bin/jupyter-lab "'</code></p>
+<p><code>Type=Application</code></p>
+<p><code>Icon=/sw/local/share/icons/jupyter.ico</code></p>
+<p><code>Categories=Development;</code></p>
+<p>People might be wondering why we are not advocating an approach based upon using a Python Virtual Environment using the python3 executable provided with the Operating System. This would be the cleanest method to create the jupyterlab environment, since it will be consistent with the libraries and other packages installed with the operating system and is the approach we take on NCI GADI. However, we are limited to the versions of Python installed with the Operating System and it appears that only 2 versions of Python3 are maintained on Bunya. At the time of writing they are Python 3.6 and Python 3.11. The safest option would be to use version 3.6 which is guaranteed to be available, but is old, and this limits the versions of certain packages available to us. From this perspective version 3.11 is a far superior option, but we can’t guarantee it won’t be removed when a newer version becomes available as a Rocky Linux Package. In addition, RCC have only installed a small subset of development packages provided by the Operating System. This limits our options for compiling additional software without the aid of third-party tools such as Conda, Apptainer or EasyBuild. This differs from the approach taken by NCI GADI, where they advocate using the compilers provided by the Operating System and as a result they maintain a larger selection of development packages.</p>
+</section>
+</section>
+<section id="programming-language-environments" class="level2">
+<h2 class="anchored" data-anchor-id="programming-language-environments">Programming Language Environments</h2>
+<section id="r" class="level3">
+<h3 class="anchored" data-anchor-id="r">R</h3>
+<p>Most people will use RStudio to R code on Bunya, but it is also possible to load R itself using one of the modules provided. In such cases, we recommend you choose one of the modules from the <code>/sw/local/rocky8/noarch/rcc/modules</code> directory, which are the same versions of R used with RStudio, rather than default module which is compiled using easybuild.</p>
+<p>Sometimes we want to create our own custom environment for a particular project so that we can better manage the environment and record its state so that we can distribute it to other researchers. &nbsp;In such cases, we can use mamba to build and maintain our R environment and then use that environment with Jupyter, VS Code or RStudio. As an example, let us create an environment called r-data-science where we will install R and additional recommended packages from the articles <a href="https://nijat.medium.com/top-10-essential-r-packages-for-data-science-b34419d9419f">Top 10 Essential R Packages for Data Science</a> and <a href="https://www.r-bloggers.com/2021/04/15-essential-packages-in-r-for-data-science/">15 Essential packages in R for Data Science</a>. We start by creating a file called <code>r-data-science.yml</code> containing</p>
+<p><code>name: r-data-science</code></p>
+<p><code>channels:</code></p>
+<p><code>- defaults</code></p>
+<p><code>- conda-forge</code></p>
+<p><code>- r</code></p>
+<p><code>dependencies:</code></p>
+<p><code>- r-base</code></p>
+<p><code>- r-ggplot2</code></p>
+<p><code>- r-ggraph</code></p>
+<p><code>- r-tidyr</code></p>
+<p><code>- r-dplyr</code></p>
+<p><code>- r-tidyquant</code></p>
+<p><code>- r-shiny</code></p>
+<p><code>- r-caret</code></p>
+<p><code>- r-tidyverse</code></p>
+<p><code>- r-e1071</code></p>
+<p><code>- r-plotly</code></p>
+<p><code>- r-knitr</code></p>
+<p><code>- r-mlr3</code></p>
+<p><code>- r-xgboost</code></p>
+<p><code>- r-xml</code></p>
+<p><code>- r-lubridate</code></p>
+<p><code>- r-stringr</code></p>
+<p><code>- r-tidymodels</code></p>
+<p><code>- r-purrr</code></p>
+<p><code>- r-randomForest</code></p>
+<p><code>- r-irkernel</code></p>
+<p><code>- jupyter</code></p>
+<p>Then we load the miniforge environment as before and create the environment with the command</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/R.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Then we load the jupyterlab module, activate the r-data-science environment, start R and register the IRKernel, so that we can use it in future Jupyter sessions.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/R2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>We should now be able to change the version of R used by RStudio by exporting the environment variable RSTUDIO_WHICH_R to point to <code>~/.conda/envs/r-data-science/bin/R</code>. Unfortunately, this doesn’t appear to work with the containerized version of RStudio we have been using up until now. Instead, we need to download an older version of RStudio Desktop from AWS and untar it into a suitable directory. In our case, we will use <code>~/apps</code>. Then we run the following to use this version of R with</p>
+<p><code>export RSTUDIO_WHICH_R=~/.conda/envs/r-data-science/bin/R</code></p>
+<p><code>~/apps/rstudio-2024.12.1+563/rstudio</code></p>
+<p>(Note: If this is the only version of R we ever intend to use, then we could consider adding it to our ~/.Renviron file)</p>
+<p>An alternative approach would be to create a wrapper file as we did previously. Our wrapper file could look like this</p>
+<p><code>#!/bin/bash</code></p>
+<p><code>export RSTUDIO_WHICH_R=~/.conda/envs/r-data-science/bin/R</code></p>
+<p><code>~/apps/rstudio-2024.12.1+563/rstudio</code></p>
+<p>This should work most of the time. However, sometimes you may need to use other compilers in your conda environment to build certain packages. In which case, you edit your wrapper script to activate your conda environment prior to starting RStudio e.g:</p>
+<p><code>#!/bin/bash</code></p>
+<p><code>. /sw/local/rocky8/noarch/rcc/software/miniforge/25.3.0-3/etc/profile.d/conda.sh</code></p>
+<p><code>conda activate r-data-science</code></p>
+<p><code>export RSTUDIO_WHICH_R=~/.conda/envs/r-data-science/bin/R</code></p>
+<p><code>~/apps/rstudio-2024.12.1+563/rstudio</code></p>
+<p>We can then create a display file called ~/.local/share/applications/rstudio.desktop</p>
+<p><code>[Desktop Entry]</code></p>
+<p><code>Name=RStudio Desktop</code></p>
+<p><code>Exec= /home/YOUR USERNAME/apps/wrappers/rstudio_wrapper.sh</code></p>
+<p><code>Type=Application</code></p>
+<p><code>Icon=input-keyboard</code></p>
+<p>This completes the basic setup for our R environment. We investigate further options in our case studies below.</p>
+</section>
+<section id="python" class="level3">
+<h3 class="anchored" data-anchor-id="python">Python</h3>
+<p>We do not recommend using the default version3 of Python provided on Bunya for your development projects. Instead, we suggest that you consider building your own version of Python using either Python Virtual Environments, Apptainer containers or Conda environments. Our recommendation would be to use mamba from the Miniforge module to build a Conda environment containing python and a selection of packages which you often use. As an example, we will create an environment based on the article <a href="https://www.geeksforgeeks.org/python/python-libraries-for-data-science/">Top 25 Python Libraries for Data Science in 2025</a>&nbsp;installing a subset of the libraries suitable for a CPU only desktop. <code>Our py25_environment.yml</code> file might look like this.</p>
+<p><code>name: py25</code></p>
+<p><code>channels:</code></p>
+<p><code>- conda-forge</code></p>
+<p><code>- bioconda</code></p>
+<p><code>dependencies:</code></p>
+<p><code>- ipykernel</code></p>
+<p><code>- scipy</code></p>
+<p><code>- scikit-learn</code></p>
+<p><code>- numpy</code></p>
+<p><code>- pandas</code></p>
+<p><code>- dask</code></p>
+<p><code>- vaex</code></p>
+<p><code>- matplotlib</code></p>
+<p><code>- seaborn</code></p>
+<p><code>- plotly</code></p>
+<p><code>- altair</code></p>
+<p><code>- xgboost</code></p>
+<p><code>- lightgbm</code></p>
+<p><code>- pycaret</code></p>
+<p><code>- catboost</code></p>
+<p><code>- tensorflow-cpu</code></p>
+<p><code>- pytorch</code></p>
+<p><code>- transformers</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Py25.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>We can make this environment available within jupyterlab using the following</p>
+<p><code>python -m ipykernel install --user --name py25 --display-name Py25</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Py25%202.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Now we can start Jupyter notebook and check we can see the new kernel (Py25) in the change kernel menu.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/PyNotebook.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Our environment should automatically be detected by Visual Studio Code, and we can opt to use it as our default version by going to View -&gt; Command Pallete and typing Python: Select Interpreter</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Interpreter.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="julia" class="level3">
+<h3 class="anchored" data-anchor-id="julia">Julia</h3>
+<p>RCC provides support for Julia through the environment module system. We should be able to load a reasonably recent version of Julia with the command module load Julia. We have found it necessary to set the JULIA_DEPOT_PATH environment variable to a directory which you can write to, so that you can install additional packages yourself. Whilst this is a perfectly reasonable way to use Julia, we are big fans of using juliaup to manage our Julia environments. For the cost of a few extra Gigabytes of storage in our home directory, we can easily manage multiple versions of Julia. This can be very useful if we need to review old analysis, and we will see an example of this in one of our case studies.</p>
+<p>By running the command</p>
+<p><code>curl -fsSL https://install.julialang.org | sh</code></p>
+<p>and following any recommendations in the output, we will set up both juliaup and the most recent version of Julia. To use this version of Julia, in this case version 1.11.7, with jupyterlab we first add the IJulia package and then from the Julia command line execute the following</p>
+<p><code>using IJulia</code></p>
+<p><code>installkernel("Julia ", "--project=@.")</code></p>
+<p>This is all that is necessary to get to work with Julia. Further advice will be included in our case studies.</p>
+</section>
+</section>
+<section id="case-studies" class="level2">
+<h2 class="anchored" data-anchor-id="case-studies">Case Studies</h2>
+<section id="econometrics-with-python" class="level3">
+<h3 class="anchored" data-anchor-id="econometrics-with-python">Econometrics with Python</h3>
+<p>In this example, we simulate a situation where colleagues have given us a set of Jupyter notebooks detailing how they analysed their data. There are various reasons why we might wish to do this. For instance, we may wish to run their analysis on our data set, and we could easily replace the call which loads in the data with our own call and then run through the analysis, or perhaps we would like to extend the analysis by re-running it with some extra steps in the workflow.</p>
+<p>Our data comes from the “Econometrics With Python” project on GitHub, which provides a set of lecture notes intended for econometrics training. They were last updated in July 2022 and now give errors with the latest versions of some packages it uses. This is not an uncommon issue with old code. We encourage you to provide details of the versions of each software package you use. This may be a list of installed.packages() from R or the result of pip list for a python environment. In our simulation, they have provided us with a YAML file containing the packages they installed into a conda environment.</p>
+<p>We start by cloning the project. We do this with the command</p>
+<p><code>git clone https://github.com/weijie-chen/Econometrics-With-Python.git</code></p>
+<p>We noticed that the site is missing a python script, but we can download it from another one of the authors github projects with the command</p>
+<p><code>wget -O Econometrics-With-Python/linregfunc.py</code></p>
+<p><a href="https://raw.githubusercontent.com/weijie-chen/Basic-Statistics-With-Python/refs/heads/main/linregfunc.py" class="uri">https://raw.githubusercontent.com/weijie-chen/Basic-Statistics-With-Python/refs/heads/main/linregfunc.py</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Case%20Study.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Next, create a new conda environment for our YAML file with the commands.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Case%20Econ.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>where <code>environment.yml</code> contains</p>
+<p><code>name: econometrics</code></p>
+<p><code>channels:</code></p>
+<p><code>- bioconda</code></p>
+<p><code>- conda-forge</code></p>
+<p><code>dependencies:</code></p>
+<p><code>- ipykernel=6.30.1=pyh82676e8_0</code></p>
+<p><code>- ipython=8.18.1=pyh707e725_3</code></p>
+<p><code>- jupyter_client=8.6.3=pyhd8ed1ab_1</code></p>
+<p><code>- jupyter_core=5.8.1=pyh31011fe_0</code></p>
+<p><code>- lxml=6.0.0=py39h3820f57_0</code></p>
+<p><code>- matplotlib=3.9.4=py39hf3d152e_0</code></p>
+<p><code>- matplotlib-inline=0.1.7=pyhd8ed1ab_1</code></p>
+<p><code>- numpy=2.0.2=py39h9cb892a_1</code></p>
+<p><code>- openpyxl=3.1.5=py39h79730dd_1</code></p>
+<p><code>- pandas=2.3.1=py39h1b6b32d_0</code></p>
+<p><code>- pandas-datareader=0.10.0=pyhd8ed1ab_1</code></p>
+<p><code>- parso=0.8.4=pyhd8ed1ab_1</code></p>
+<p><code>- pcre2=10.45=hc749103_0</code></p>
+<p><code>- peewee=3.18.2=py39hf036d5e_0</code></p>
+<p><code>- pexpect=4.9.0=pyhd8ed1ab_1</code></p>
+<p><code>- pickleshare=0.7.5=pyhd8ed1ab_1004</code></p>
+<p><code>- pillow=11.3.0=py39h15c0740_0</code></p>
+<p><code>- pure_eval=0.2.3=pyhd8ed1ab_1</code></p>
+<p><code>- python=3.9.23=hc30ae73_0_cpython</code></p>
+<p><code>- python-dateutil=2.9.0.post0=pyhe01879c_2</code></p>
+<p><code>- python-dotenv=1.1.1=pyhe01879c_0</code></p>
+<p><code>- python-tzdata=2025.2=pyhd8ed1ab_0</code></p>
+<p><code>- pytz=2025.2=pyhd8ed1ab_0</code></p>
+<p><code>- pyzmq=27.0.2=py39haa5fa38_0</code></p>
+<p><code>- readline=8.2=h8c095d6_2</code></p>
+<p><code>- scipy=1.13.1=py39haf93ffa_0</code></p>
+<p><code>- seaborn=0.13.2=hd8ed1ab_3</code></p>
+<p><code>- soupsieve=2.7=pyhd8ed1ab_0</code></p>
+<p><code>- stack_data=0.6.3=pyhd8ed1ab_1</code></p>
+<p><code>- statsmodels=0.14.5=py39h7c0b2d6_0</code></p>
+<p><code>- sympy=1.14.0=pyh2585a3b_105</code></p>
+<p><code>- tornado=6.5.2=py39hd399759_0</code></p>
+<p><code>- traitlets=5.14.3=pyhd8ed1ab_1</code></p>
+<p><code>- unicodedata2=16.0.0=py39h8cd3c5a_0</code></p>
+<p><code>- yfinance=0.2.58=pyhd8ed1ab_0</code></p>
+<p><code>- zipp=3.23.0=pyhd8ed1ab_0</code></p>
+<p><code>- zstandard=0.23.0=py39hd399759_3</code></p>
+<p>We activate the Conda environment and add it to the options available through Jupyterlab in a similar fashion as to the way we did with Py25 environment.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Case%20Econ%202.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Unfortunately, some of the packages installed along the Jupyterlab module conflict with packages in our new environment. However, we can overcome this issue by using a wrapper file which activates the Conda environment prior to running python. (Note: this does result in a short delay when we start up the environment)</p>
+<p>An example wrapper file, called <code>econometrics.sh</code> might contain something like</p>
+<p><code>#!/bin/bash</code></p>
+<p><code>. ${CONDA_EXE/\/bin\/conda/}/etc/profile.d/conda.sh</code></p>
+<p><code>conda activate econometrics</code></p>
+<p><code>eval "python $@"</code></p>
+<p>Don’t forget to make the script executable with the command <code>chmod u+x econometrics.sh</code>, then edit your jupyter kernel at</p>
+<p><code>~/.local/share/jupyter/kernels/python_econometrics/kernel.json</code></p>
+<p>Replacing the line containing the path to our python executable with full path to our wrapper script. In my case, that would mean replacing</p>
+<p><code>"/home/USERNAME/.conda/envs/econometrics/bin/python",</code></p>
+<p>with</p>
+<p><code>"/home/USERNAME/apps/wrappers/econometrics.sh",</code></p>
+<p>because I choose to keep all my wrapper scripts in the <code>~/apps/wrappers</code> directory. We are now ready to test our set up. Load the jupyterlab module and run the jupyter-lab command. Open notebook called <code>“1. Simple Linear Regression”</code>. Change the environment in the top righthand corner from the default Python3 environment to our “Python (Econometrics)” version. Wait for icon to the right to become a white circle, if it fails to do so check the terminal window for an error message. The most common issues will be due to a typo in one of your configuration files or your wrapper script not being executable.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/PyRegression.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Select the edit menu and select “Clear all outputs”. Now we can click on the forward arrow to move through the Notebook generating new output. You will notice that one of the commands generates lots of FutureWarnings. This means that the code is using methods that are deprecated and won’t work in later versions. This is why we had to create our custom environment in Conda. These warnings don’t stop the output being generated, so let’s ignore them. Go to the cell at the top and add</p>
+<p><code>import warnings</code></p>
+<p>Then hit the + symbol to add a new cell underneath and add the following code</p>
+<p><code>warnings.simplefilter(action='ignore', category=FutureWarning)</code></p>
+<p>Then reset the kernel and run all the cells by clicking on the pair of forward arrows and the warnings should disappear.</p>
+<p>Let’s shutdown our Virtual Desktop and see what it looks like under a Jupyter Interactive session. Check that you are using a suitable working directory. I keep my notebooks in my user scratch directory, so I change the value for the working directory to reflect this. We can then run through the same analysis to confirm that it works the same way as it did via the virtual desktop, or we could open another workbook and work through that. We are going to select the Notebook <code>2. Multiple Linear Regression, Multicollinearity and Heteroscedasticity.ipynb</code> to illustrate another issue which you may come across with an old analysis. We once again import the warnings package and add the filter for Future Warnings, then we work through the notebook. We discover an issue when we try to access data from Eurostat. This is an example where something has changed externally to our program, and the analysis fails. In this case, the rest interface to the Eurostat website has been updated, but the python package <code>pandas_datareader</code> has not changed to account for this. We could log an issue with the author, but it looks like this package is no longer being actively maintained so it is unlikely to be fixed. If this stage was vitally important to our analysis, we would have to find another method of getting this data. Perhaps we could use a package specifically designed to work with Eurostat data such as eurostat. In this case, we do not use this data in subsequent steps in the analysis so we can remove it by selecting the line and clicking on the scissors icon. We should now be able to run the analysis without issue. If we had replaced the code to get data from Eurostat we would need to create a new YAML file to build this environment in the future. The easiest way to do this is to export our conda environment with the command</p>
+<p><code>mamba env export -n econometrics &gt; new_environment.yml</code></p>
+<p>If this was a real project, we recommend that you save this YAML file and your notebook files to an RDM share. Space is limited in our home directories, so we will often need to remove old environments. Once we have finished with the environment, we can remove it as follows. In a Jupyter instance, we start a terminal and type</p>
+<p><code>jupyter kernelspec list</code></p>
+<p>And pick the kernel we wish to remove. In this case econometrics and remove it with the command</p>
+<p><code>jupyter kernelspec remove econometrics</code></p>
+<p>We can then remove the Conda environment with the command</p>
+<p><code>conda env remove -n econometrics</code></p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
