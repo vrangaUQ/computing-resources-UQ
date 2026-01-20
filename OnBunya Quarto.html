@@ -435,6 +435,72 @@ ul.task-list li input[type="checkbox"] {
 <p>We can then remove the Conda environment with the command</p>
 <p><code>conda env remove -n econometrics</code></p>
 </section>
+<section id="julia-for-data-science" class="level3">
+<h3 class="anchored" data-anchor-id="julia-for-data-science">Julia for Data Science</h3>
+<p>Now let’s look at a similar example in Julia. Our example is from from <a href="https://github.com/JuliaAcademy/DataScience">JuliaAcademy/DataScience: Data Science in Julia course for JuliaAcademy.com, taught by Huda Nassar</a>. We can download the files from GitHub with the command</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Julia.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>This site was developed using Julia version 1.6.1. We can add this version to our setup via the command</p>
+<p><code>juliaup add 1.6.1</code></p>
+<p>Now we want to configure a jupyter kernel for this version of Julia. The jupyterlab module used by the Jupyter instance provided by OnBunya adds the path to another version of Julia in front of the version we have configured through juliaup, so it is better to use the full path to Julia if we are using that service or if have run module load jupyterlab in our terminal on a virtual desktop.</p>
+<p>For a default installation, we would use the command</p>
+<p><code>~/.juliaup/bin/julia +1.6.1</code></p>
+<p>As with the default environment we installed early, we will need to add the IJulia package and install the kernel</p>
+<p><code>using Pkg</code></p>
+<p><code>Pkg.add(“IJulia”)</code></p>
+<p><code>using IJulia</code></p>
+<p><code>installkernel("Julia ", "--project=@.")</code></p>
+<p>Notice that it has automatically added the version of Julia we use to the name of the kernel. Next, we need to install the packages required by the project. Since our example makes calls from other programming languages, we need to configure Julia to find these compilers. For example, I have created a Conda environment called other-compilers from an environment.yml file containing the following</p>
+<p><code>name: other-compilers</code></p>
+<p><code>channels:</code></p>
+<p><code>- conda-forge</code></p>
+<p><code>- bioconda</code></p>
+<p><code>- r</code></p>
+<p><code>dependencies:</code></p>
+<p><code>- python</code></p>
+<p><code>- pip</code></p>
+<p><code>- networkx</code></p>
+<p><code>- numpy=1.19.5</code></p>
+<p><code>- scipy=1.5.3</code></p>
+<p><code>- scikit-learn=0.24.2</code></p>
+<p><code>- r-base</code></p>
+<p><code>- r-ggplot2</code></p>
+<p><code>- r-boot</code></p>
+<p>We change directory to the DataScience directory and create a file called <code>LocalPreferences.toml</code> containing something like</p>
+<p><code>[RCall]</code></p>
+<p><code>Rhome = “/home/USERNAME/.conda/envs/other-compilers/lib/R"</code></p>
+<p><code>libR = “/home/USERNAME/.conda/envs/other-compilers/lib/R/lib/libR.so"</code></p>
+<p><code>[PyCall]</code></p>
+<p><code>PYTHON = “/home/USERNAME/.conda/envs/other-compilers/bin/python”</code></p>
+<p>Then start Julia with the command</p>
+<p><code>~/.juliaup/bin/julia +1.6.1 --project=@.</code></p>
+<p>Type “]“ to enter pkg mode and enter precompile to install the packages (this will take some time). Once this is done, we can start a jupyterlab session and open one of the notebooks using the Jupyter 1.6.1 kernel. This example uses more resources than our previous one, so you may need to allocate more resources to your instance to avoid the kernel crashing when executing commands from the notebooks.</p>
+</section>
+<section id="a-simple-example-using-r" class="level3">
+<h3 class="anchored" data-anchor-id="a-simple-example-using-r">A simple example using R</h3>
+<p>We can also produce notebooks using R. We will need a suitable R environment with sufficient compilers and libraries to allow us to install any additional R packages we might require.&nbsp;R is not provided as part of the operating system on Bunya, so we will have to create our own R environment or load R using the module command. In both cases, we will have to use a wrapper script to ensure that the environment is loaded prior to running R. In this example we will use the module r/4.4.2-heavy because it already has many packages installed including IRkernel which we need to interact with Jupyter.&nbsp;We create a wrapper file called <code>~/apps/wrappers/r_cs3.sh</code> containing</p>
+<p><code>#!/bin/bash</code></p>
+<p><code>module load r/4.4.2-heavy</code></p>
+<p><code>R $@</code></p>
+<p><code>And make the script executable</code></p>
+<p><code>chmod +x ~/apps/wrappers/r_cs3.sh</code></p>
+<p>The next step should be to register the kernel using the IRkernel package. Unfortunately, the module uses an apptainer container to run R, which does not have the Jupyter client installed in its path, and we can’t use our usual jupyter client from inside the container, so the IRkernel::installspec command fails. However, other functions from IRkernel will work, so if we manually register the kernel, we are still able to use this version of R from within Jupyter Labs. To do this we access the container and copy the kernelspec to our Jupyter kernel directory</p>
+<p><code>apptainer exec /sw/containers/local/rcc/rstudio_2024.12.0-467_R-4.4.2.sif \</code></p>
+<p><code>cp -r /usr/lib/R/site-library/IRkernel/kernelspec ~/.local/share/jupyter/kernels/r-cs3</code></p>
+<p>Then we replace the R command in its kernel.json file with the path to our wrapper script</p>
+<p><code>sed -i&nbsp; 's#"R", "--slave"#"~/apps/wrappers/r_cs3.sh", "--slave"#' ~/.local/share/jupyter/kernels/r-cs3/kernel.json</code></p>
+<p>Then we change the display name so that it is unique</p>
+<p><code>sed -i ‘s# "display_name":"R"# "display_name":"R"#’&nbsp; ~/.local/share/jupyter/kernels/r-cs3/kernel.json</code></p>
+<p>Now we should be able to see our new version of are in a jupyterlabs session. To demonstrate this, we can run the code from the <a href="https://www.geeksforgeeks.org/r-machine-learning/analyzing-hospital-patient-data-in-r/">Analyzing Hosptial Patient Data in R</a> article on the GeeksforGeeks website. Create a new Jupyter notebook and select the new R kernel. Copy the code segments from the website into cells within the notebook and execute the cell using the Shift &amp; Enter keys.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/R%20Jupyter.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
 </section>
 
 </main>

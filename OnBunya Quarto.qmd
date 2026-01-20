@@ -9,7 +9,7 @@ editor: visual
 
 UQ provides several virtual desktop services to researchers through the [OnBunya](https://onbunya.rcc.uq.edu.au/) website. An overview of these services can be found in the HPC OnDemand Guide. The diagram below shows the current options available through the service.
 
-![](images/Interactive Apps.png){fig-align="center"}
+![](images/Interactive%20Apps.png){fig-align="center"}
 
 Our Primary focus in this document is help configure your environment so that you can start coding in languages such as R, Python or Julia in either an Integrated Development Environment or via Jupyter Notebooks and highlight some common issues which you may encounter on Bunya.
 
@@ -37,7 +37,7 @@ We will consider two options, the RStudio Desktop and VS Code. We will demonstra
 
 Since the beginning of 2025, it is no longer possible to download a pre-compiled version of RStudio desktop for the version of the Operating System currently installed on Bunya, so if we want to use the RStudio Desktop, we must choose between downloading the December 2024 version of RStudio Desktop and configuring it with our own version of R or using an Apptainer container with a more recent release. The Research Computing Centre maintains several containers in the directory /sw/containers/local/rcc/. They are available under **General Apps** in the **Bunya Apps** directory.
 
-![](images/Bunya Apps.png){fig-align="center"}
+![](images/Bunya%20Apps.png){fig-align="center"}
 
 Alternatively, you can access these containers via the module system.
 
@@ -49,7 +49,7 @@ You will notice that some versions of RStudio have many additional packages inst
 
 As mentioned earlier, we favour installing our own personal version of VS Code. We can use the Firefox browser from a standard desktop from onBunya to download the tar.gz file for x64 from the [download link](https://code.visualstudio.com/download#), then open a terminal and untar the data into a directory of our choice, for example
 
-![](images/VS Code.png){fig-align="center"}
+![](images/VS%20Code.png){fig-align="center"}
 
 Next, we try starting up with the command
 
@@ -71,13 +71,13 @@ If that is successful, we can go ahead and delete the tar.gz file that we downlo
 
 Here you should see an item appearing under the Programming menu called **Visual Studio Code**.
 
-![](images/VS Code Item.png){fig-align="center"}
+![](images/VS%20Code%20Item.png){fig-align="center"}
 
 ### Jupyter Notebooks
 
 You can start a Jupyter notebook by clicking on the link in the Bunya Apps -\> General Apps Menu. This will automatically start up the Firefox web browser pointing to the URL used by your Jupyter notebook session.
 
-![](images/Jupyter Notebook.png){fig-align="center"}
+![](images/Jupyter%20Notebook.png){fig-align="center"}
 
 This is the recommended way to work with Jupyter Notebooks from within a Desktop session. However, it does differ from the interface you see if you use the Jupyter Interactive session which uses Jupyter Labs. Jupyter Labs is available through the module system, and we can create our own menu entry for Jupyter Labs if we prefer to have consistent experience in both the desktop and the interactive application. One approach is to create a wrapper script which loads the module and then starts jupyter-lab. For example, create a directory called `~/apps/wrappers` and add a script called `jupyterlab_wrapper.sh` containing
 
@@ -89,7 +89,7 @@ This is the recommended way to work with Jupyter Notebooks from within a Desktop
 
 then make the script executable with the command
 
-![](images/Jupyter terminal.png){fig-align="center"}
+![](images/Jupyter%20terminal.png){fig-align="center"}
 
 now we can create a menu item with a script called `~/.local/share/applications/jupyterlab.desktop` containing
 
@@ -113,11 +113,11 @@ An alternative is to create our own Conda environment for Jupyterlab. Here again
 
 There are several modules available for managing Conda environments, the default being anaconda, but we recommend using Miniforge. We start by loading the most recent Miniforge module
 
-![](images/Jupyter terminal 2.png){fig-align="center"}
+![](images/Jupyter%20terminal%202.png){fig-align="center"}
 
 At the time of writing, the mamba command does not appear to include a suitable environment directory in its path. We can check this with the command `mamba config list envs_dir`. Make sure that it contains a directory you can write to such as `~/.conda/envs` and consider doing something similar for `pkgs_dirs`.
 
-![](images/Jupyter terminal 3.png){fig-align="center"}
+![](images/Jupyter%20terminal%203.png){fig-align="center"}
 
 Create an environment yaml file to build our environment for example we could create a file called `jupyterlab_environment.yml` containing
 
@@ -343,15 +343,13 @@ We can make this environment available within jupyterlab using the following
 
 `python -m ipykernel install --user --name py25 --display-name Py25`
 
-![](images/Py25 2.png){fig-align="center"}
+![](images/Py25%202.png){fig-align="center"}
 
 Now we can start Jupyter notebook and check we can see the new kernel (Py25) in the change kernel menu.
 
 ![](images/PyNotebook.png){fig-align="center"}
 
-Our environment should automatically be detected by Visual Studio Code, and we can
-opt to use it as our default version by going to View -\> Command Pallete and
-typing Python: Select Interpreter
+Our environment should automatically be detected by Visual Studio Code, and we can opt to use it as our default version by going to View -\> Command Pallete and typing Python: Select Interpreter
 
 ![](images/Interpreter.png){fig-align="center"}
 
@@ -389,11 +387,11 @@ We noticed that the site is missing a python script, but we can download it from
 
 <https://raw.githubusercontent.com/weijie-chen/Basic-Statistics-With-Python/refs/heads/main/linregfunc.py>
 
-![](images/Case Study.png){fig-align="center"}
+![](images/Case%20Study.png){fig-align="center"}
 
 Next, create a new conda environment for our YAML file with the commands.
 
-![](images/Case Econ.png){fig-align="center"}
+![](images/Case%20Econ.png){fig-align="center"}
 
 where `environment.yml` contains
 
@@ -483,7 +481,7 @@ where `environment.yml` contains
 
 We activate the Conda environment and add it to the options available through Jupyterlab in a similar fashion as to the way we did with Py25 environment.
 
-![](images/Case Econ 2.png){fig-align="center"}
+![](images/Case%20Econ%202.png){fig-align="center"}
 
 Unfortunately, some of the packages installed along the Jupyterlab module conflict with packages in our new environment. However, we can overcome this issue by using a wrapper file which activates the Conda environment prior to running python. (Note: this does result in a short delay when we start up the environment)
 
@@ -538,3 +536,111 @@ And pick the kernel we wish to remove. In this case econometrics and remove it w
 We can then remove the Conda environment with the command
 
 `conda env remove -n econometrics`
+
+### Julia for Data Science
+
+Now let’s look at a similar example in Julia. Our example is from from [JuliaAcademy/DataScience: Data Science in Julia course for JuliaAcademy.com, taught by Huda Nassar](https://github.com/JuliaAcademy/DataScience). We can download the files from GitHub with the command
+
+![](images/Julia.png){fig-align="center"}
+
+This site was developed using Julia version 1.6.1. We can add this version to our setup via the command
+
+`juliaup add 1.6.1`
+
+Now we want to configure a jupyter kernel for this version of Julia. The jupyterlab module used by the Jupyter instance provided by OnBunya adds the path to another version of Julia in front of the version we have configured through juliaup, so it is better to use the full path to Julia if we are using that service or if have run module load jupyterlab in our terminal on a virtual desktop.
+
+For a default installation, we would use the command
+
+`~/.juliaup/bin/julia +1.6.1`
+
+As with the default environment we installed early, we will need to add the IJulia package and install the kernel
+
+`using Pkg`
+
+`Pkg.add(“IJulia”)`
+
+`using IJulia`
+
+`installkernel("Julia ", "--project=@.")`
+
+Notice that it has automatically added the version of Julia we use to the name of the kernel. Next, we need to install the packages required by the project. Since our example makes calls from other programming languages, we need to configure Julia to find these compilers. For example, I have created a Conda environment called other-compilers from an environment.yml file containing the following
+
+`name: other-compilers`
+
+`channels:`
+
+`- conda-forge`
+
+`- bioconda`
+
+`- r`
+
+`dependencies:`
+
+`- python`
+
+`- pip`
+
+`- networkx`
+
+`- numpy=1.19.5`
+
+`- scipy=1.5.3`
+
+`- scikit-learn=0.24.2`
+
+`- r-base`
+
+`- r-ggplot2`
+
+`- r-boot`
+
+We change directory to the DataScience directory and create a file called `LocalPreferences.toml` containing something like
+
+`[RCall]`
+
+`Rhome = “/home/USERNAME/.conda/envs/other-compilers/lib/R"`
+
+`libR = “/home/USERNAME/.conda/envs/other-compilers/lib/R/lib/libR.so"`
+
+`[PyCall]`
+
+`PYTHON = “/home/USERNAME/.conda/envs/other-compilers/bin/python”`
+
+Then start Julia with the command
+
+`~/.juliaup/bin/julia +1.6.1 --project=@.`
+
+Type “\]“ to enter pkg mode and enter precompile to install the packages (this will take some time). Once this is done, we can start a jupyterlab session and open one of the notebooks using the Jupyter 1.6.1 kernel. This example uses more resources than our previous one, so you may need to allocate more resources to your instance to avoid the kernel crashing when executing commands from the notebooks.
+
+### A simple example using R
+
+We can also produce notebooks using R. We will need a suitable R environment with sufficient compilers and libraries to allow us to install any additional R packages we might require. R is not provided as part of the operating system on Bunya, so we will have to create our own R environment or load R using the module command. In both cases, we will have to use a wrapper script to ensure that the environment is loaded prior to running R. In this example we will use the module r/4.4.2-heavy because it already has many packages installed including IRkernel which we need to interact with Jupyter. We create a wrapper file called `~/apps/wrappers/r_cs3.sh` containing
+
+`#!/bin/bash`
+
+`module load r/4.4.2-heavy`
+
+`R $@`
+
+`And make the script executable`
+
+`chmod +x ~/apps/wrappers/r_cs3.sh`
+
+The next step should be to register the kernel using the IRkernel package. Unfortunately, the module uses an apptainer container to run R, which does not have the Jupyter client installed in its path, and we can’t use our usual jupyter client from inside the container, so the IRkernel::installspec command fails. However, other functions from IRkernel will work, so if we manually register the kernel, we are still able to use this version of R from within Jupyter Labs. To do this we access the container and copy the kernelspec to our Jupyter kernel directory
+
+`apptainer exec /sw/containers/local/rcc/rstudio_2024.12.0-467_R-4.4.2.sif \`
+
+`cp -r /usr/lib/R/site-library/IRkernel/kernelspec ~/.local/share/jupyter/kernels/r-cs3`
+
+Then we replace the R command in its kernel.json file with the path to our wrapper script
+
+`sed -i  's#"R", "--slave"#"~/apps/wrappers/r_cs3.sh", "--slave"#' ~/.local/share/jupyter/kernels/r-cs3/kernel.json`
+
+Then we change the display name so that it is unique
+
+`sed -i ‘s# "display_name":"R"# "display_name":"R"#’  ~/.local/share/jupyter/kernels/r-cs3/kernel.json`
+
+Now we should be able to see our new version of are in a jupyterlabs session. To demonstrate this, we can run the code from the [Analyzing Hosptial Patient Data in R](https://www.geeksforgeeks.org/r-machine-learning/analyzing-hospital-patient-data-in-r/) article on the GeeksforGeeks website. Create a new Jupyter notebook and select the new R kernel. Copy the code segments from the website into cells within the notebook and execute the cell using the Shift & Enter keys.
+
+![](images/R%20Jupyter.png){fig-align="center"}
